@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+
 namespace Calculus_2
 {
     public partial class Form1 : Form
@@ -63,5 +64,17 @@ namespace Calculus_2
                 }
             }
         }
+
+        void derivative()
+        {
+            for (int i = 1; i < table.Count; i++)
+            {
+                double dV = table[i].voltage - table[i - 1].voltage;
+                double dt = table[i].time - table[i - 1].time;
+                table[i].voltageDerivative = dV / dt;
+            }
+        }
     }
 }
+
+   
