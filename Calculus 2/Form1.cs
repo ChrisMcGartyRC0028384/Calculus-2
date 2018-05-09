@@ -88,27 +88,41 @@ namespace Calculus_2
                 ChartType = SeriesChartType.Spline,
                 BorderWidth = 2
             };
-            Series series2 = new Series
+ 
+            chart1.Series.Add(series1);
+ 
+            for (int i = 0; i < table.Count; i++)
             {
-                Name = "Points",
-                Color = Color.Red,
+                series1.Points.AddXY(table[i].time, table[i].voltage);
+ 
+            }
+
+        }
+
+        private void dVDTTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            derivative();
+
+            chart1.Series.Clear();
+            chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            Series series1 = new Series
+            {
+                Name = "Line",
+                Color = Color.Blue,
                 IsVisibleInLegend = false,
                 IsXValueIndexed = true,
-                ChartType = SeriesChartType.Point,
+                ChartType = SeriesChartType.Spline,
                 BorderWidth = 2
             };
+
             chart1.Series.Add(series1);
-            chart1.Series.Add(series2);
-            for (int i = 0; i < 11; i++)
+
+            for (int i = 0; i < table.Count; i++)
             {
-                series1.Points.AddXY();
-                series2.Points.AddXY();
+                series1.Points.AddXY(table[i].time, table[i].voltageDerivative);
+
             }
 
         }
     }
 }
-
-    
-
-   
